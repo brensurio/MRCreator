@@ -30,7 +30,6 @@ import javafx.stage.Stage;
 public class MainApp extends Application {
 	private Stage primaryStage;
 	private BorderPane rootLayout;
-	
 	private ObservableList<Employee> employeeList = FXCollections.observableArrayList();
 	
 	public MainApp() { }
@@ -61,6 +60,10 @@ public class MainApp extends Application {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		File file = getEmployeeListFilePath();
+        if (file != null) {
+            loadEmployeeListFromFile(file);;
+        }
 	}
 
 	private void showMRCreatorOverview() {

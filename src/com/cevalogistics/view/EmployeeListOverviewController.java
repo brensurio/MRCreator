@@ -59,6 +59,8 @@ public class EmployeeListOverviewController {
 	private Label item4Quan;
 	@FXML
 	private Label item4Cost;
+	@FXML
+	private Label dateBorrowed;
 	
 	private Stage dialogStage;
 	private Employee employee;
@@ -85,50 +87,44 @@ public class EmployeeListOverviewController {
 			nameLabel.setText(employee.getName());
 			deptLabel.setText(employee.getDept());
 			funcLabel.setText(employee.getFunc());
-			
 			item1Desc.setText(employee.getItem(0).getItemName());
 			item1Snat.setText(employee.getItem(0).getSnat());
 			item1Quan.setText(employee.getItem(0).getQuantity());
 			item1Cost.setText(employee.getItem(0).getCost());
-			
 			item2Desc.setText(employee.getItem(1).getItemName());
 			item2Snat.setText(employee.getItem(1).getSnat());
 			item2Quan.setText(employee.getItem(1).getQuantity());
 			item2Cost.setText(employee.getItem(1).getCost());
-			
 			item3Desc.setText(employee.getItem(2).getItemName());
 			item3Snat.setText(employee.getItem(2).getSnat());
 			item3Quan.setText(employee.getItem(2).getQuantity());
 			item3Cost.setText(employee.getItem(2).getCost());
-			
 			item4Desc.setText(employee.getItem(3).getItemName());
 			item4Snat.setText(employee.getItem(3).getSnat());
 			item4Quan.setText(employee.getItem(3).getQuantity());
 			item4Cost.setText(employee.getItem(3).getCost());
+			dateBorrowed.setText(employee.getDate());
 		} else {
 			nameLabel.setText(null);
 			deptLabel.setText(null);
 			funcLabel.setText(null);
-			
 			item1Desc.setText(null);
 			item1Snat.setText(null);
 			item1Quan.setText(null);
 			item1Cost.setText(null);
-			
 			item2Desc.setText(null);
 			item2Snat.setText(null);
 			item2Quan.setText(null);
 			item2Cost.setText(null);
-			
 			item3Desc.setText(null);
 			item3Snat.setText(null);
 			item3Quan.setText(null);
 			item3Cost.setText(null);
-			
 			item4Desc.setText(null);
 			item4Snat.setText(null);
 			item4Quan.setText(null);
 			item4Cost.setText(null);
+			dateBorrowed.setText(null);
 		}
 	}
 	

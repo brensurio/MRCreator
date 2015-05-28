@@ -79,4 +79,9 @@ public class RootLayoutController {
 	private void handleClose() {
 		Platform.exit();
 	}
+	
+	@FXML
+	private void handleExport() {
+		
+	}
 }

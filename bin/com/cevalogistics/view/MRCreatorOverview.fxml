@@ -27,8 +27,8 @@
             </Label>
             <Label text="Department:" GridPane.rowIndex="1" />
             <Label text="Function as:" GridPane.rowIndex="2" />
-            <TextField fx:id="nameField" onAction="#handleName" GridPane.columnIndex="1" />
-            <ComboBox fx:id="deptChoice" onAction="#handleDeptChoice" prefHeight="25.0" prefWidth="201.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="nameField" onAction="#handleName" promptText="Enter full name" GridPane.columnIndex="1" />
+            <ComboBox fx:id="deptChoice" editable="true" onAction="#handleDeptChoice" prefHeight="25.0" prefWidth="201.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
@@ -193,7 +193,7 @@
                <tooltip>
                   <Tooltip text="Search Records" />
                </tooltip></Button>
-            <Button mnemonicParsing="false" onAction="#handlePrint" text="Print" />
+            <Button mnemonicParsing="false" onAction="#handleClearField" text="Clear Fields" />
          </buttons>
       </ButtonBar>
       <Label layoutX="1.0" layoutY="378.0" text="Form No.: PUR-FO6(03) 12.12.07" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
@@ -201,10 +201,7 @@
             <Font size="9.0" />
          </font>
       </Label>
-      <ImageView fitHeight="112.0" fitWidth="175.0" layoutX="322.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../resources/images/cevaimage.jpeg" />
-         </image>
-      </ImageView>
+      <DatePicker fx:id="datePicker" layoutX="412.0" layoutY="32.0" onAction="#handleDate" promptText="Choose date" showWeekNumbers="true" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="17.0" />
+      <ImageView fx:id="cevaLogo" fitHeight="75.0" fitWidth="254.0" layoutX="325.0" layoutY="52.0" pickOnBounds="true" />
    </children>
 </AnchorPane>

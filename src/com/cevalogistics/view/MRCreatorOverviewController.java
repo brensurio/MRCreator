@@ -1,27 +1,19 @@
 package com.cevalogistics.view;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFCellStyle;
-import org.apache.poi.xssf.usermodel.XSSFFont;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
 import com.cevalogistics.MainApp;
 import com.cevalogistics.model.Employee;
+import com.cevalogistics.util.DateUtil;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ComboBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
@@ -66,6 +58,10 @@ public class MRCreatorOverviewController {
 	private TextField item3DescField;
 	@FXML
 	private TextField item3CstField;
+	@FXML
+	private DatePicker datePicker;
+	@FXML
+	private ImageView cevaLogo;
 	
 	private ObservableList<String> deptChoiceData = FXCollections.observableArrayList();
 	private MainApp mainApp;
@@ -80,8 +76,7 @@ public class MRCreatorOverviewController {
 			"DOMESTIC/ITDD", "LOCAL BOOKS/REGGA", "CASHIER", "HRD", "IS&S",
 			"PURCHASING", "ZDS/LEAN/KAIZEN", "LAGUNA CL", "Cebu", "Baguio",
 			"LAGUNA FM", "LAGUNA P&G", "Davao");
-		deptChoiceData.sort(null);
-		
+		deptChoiceData.sort(null); 
 	}
 	
 	public void setMainApp(MainApp mainApp) {
@@ -91,6 +86,11 @@ public class MRCreatorOverviewController {
 	@FXML
 	private void initialize() {
 		deptChoice.setItems(deptChoiceData);
+		cevaLogo.setImage(new Image("file:resources/images/mainlogo.png"));
+	}
+	@FXML
+	private void handleDate() {
+		this.employee.setDate(DateUtil.format(datePicker.getValue()));
 	}
 	@FXML
 	private void handleName() {
@@ -204,74 +204,25 @@ public class MRCreatorOverviewController {
 	}
 	
 	@FXML
-	private void handlePrint() throws Exception {
-		FileInputStream file = new FileInputStream(new File("C:\\testbook.xlsx"));
-		XSSFWorkbook workbook = new XSSFWorkbook(file);
-		XSSFSheet mainForm = workbook.getSheetAt(0);
-		XSSFCellStyle style = workbook.createCellStyle();
-		XSSFCellStyle style2 = workbook.createCellStyle();
-		XSSFFont font = workbook.createFont();
-		XSSFRow row;
-		XSSFCell cell;
-		//Initialize rows and columns
-		for (int x = 8; x < 12; x++) {
-			row =  mainForm.createRow(x);
-			//Initialize cells per rows
-			for (int y = 0; y < 10; y++) {
-				cell = mainForm.getRow(x).createCell(y);
-			}
-			
-		}
-		for (int x = 14; x < 18; x++) {
-			row = mainForm.createRow(x);
-			for (int y = 0; y < 10; y++) {
-				cell = mainForm.getRow(x).createCell(y);
-			}
-		}
-		row  = mainForm.createRow(37);
-		row = mainForm.createRow(47);
-		
-		style2.setAlignment(XSSFCellStyle.ALIGN_CENTER);
-		XSSFCell nameCell = mainForm.getRow(8).getCell(1);
-		nameCell.setCellType(Cell.CELL_TYPE_STRING);
-		XSSFCell deptCell = mainForm.getRow(9).getCell(4);
-		deptCell.setCellType(Cell.CELL_TYPE_STRING);
-		deptCell.setCellStyle(style2);
-		XSSFCell funcCell = mainForm.getRow(10).getCell(4);
-		funcCell.setCellType(Cell.CELL_TYPE_STRING);
-		funcCell.setCellStyle(style2);
-		XSSFCell notedByCell = mainForm.getRow(37).createCell(2);
-		notedByCell.setCellStyle(style2);
-		XSSFCell dateCell = mainForm.getRow(47).createCell(2);
-		
-		cell = mainForm.getRow(8).getCell(0);
-		cell.setCellValue("I, ");
-		cell = mainForm.getRow(8).getCell(4);
-		font.setFontHeight(10);
-		style.setFont(font);
-		cell.setCellValue(", hereby acknowledge receipt of the company property/ies described hereunder,");
-		cell.setCellStyle(style);
-		cell = mainForm.getRow(9).getCell(0);
-		cell.setCellValue("for the exclusive and official use of ");
-		cell = mainForm.getRow(9).getCell(7);
-		cell.setCellValue("department/branch for my use in the");
-		cell = mainForm.getRow(10).getCell(0);
-		cell.setCellValue("performance of my official functions as ");
-		cell = mainForm.getRow(10).getCell(7);
-		cell.setCellValue("subject to the company's policies");
-		cell = mainForm.getRow(11).getCell(0);
-		cell.setCellValue("on accountability.");
-		cell = mainForm.getRow(47).createCell(0);
-		cell = mainForm.getRow(47).getCell(0);
-		cell.setCellValue("Date Issued:");
-		
-		nameCell.setCellValue((String) employee.getName());
-		deptCell.setCellValue("aba naman");
-		funcCell.setCellValue(employee.getFunc());
-		notedByCell.setCellValue("Agnes Benedicto");
-		
-		FileOutputStream out = new FileOutputStream("C:\\testbook.xlsx");
-		workbook.write(out);
-		out.close();
+	private void handleClearField() {
+		nameField.clear();
+		funcField.clear();
+		notedbyField.clear();
+		item0QtyField.clear();
+		item0SNAField.clear();
+		item0DescField.clear();
+		item0CstField.clear();
+		item1QtyField.clear();
+		item1SNAField.clear();
+		item1DescField.clear();
+		item1CstField.clear();
+		item2QtyField.clear();
+		item2SNAField.clear();
+		item2DescField.clear();
+		item2CstField.clear();
+		item3QtyField.clear();
+		item3SNAField.clear();
+		item3DescField.clear();
+		item3CstField.clear();
 	}
 }

@@ -60,9 +60,10 @@ public class MainApp extends Application {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 		File file = getEmployeeListFilePath();
         if (file != null) {
-            loadEmployeeListFromFile(file);;
+            loadEmployeeListFromFile(file);
         }
 	}
 
@@ -98,6 +99,7 @@ public class MainApp extends Application {
 			EmployeeListOverviewController controller = loader.getController();
 			controller.setDialogStage(dialogStage);
 			controller.setEmployeeList(employeeList);
+			dialogStage.getIcons().add(new Image("file:resources/images/magglass.jpg"));
 			dialogStage.showAndWait();
 		} catch (IOException e) {
 			e.printStackTrace();
